@@ -58,7 +58,6 @@ class MainActivity : Activity() {
         override fun onDestroy() {
             super.onDestroy()
             scope.cancel()
-            exitProcess(0) // so that the module activation state will be refreshed
         }
 
         override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
@@ -175,6 +174,16 @@ class MainActivity : Activity() {
                 startActivity(this)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        exitProcess(0) // so that the module activation state will be refreshed
+    }
+
+    override fun onPause() {
+        super.onPause()
+        finish() // so that the module activation state will be refreshed
     }
 
     companion object {
