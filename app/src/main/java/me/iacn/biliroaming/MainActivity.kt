@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import me.iacn.biliroaming.hook.SettingHook
 import me.iacn.biliroaming.utils.fetchJson
 import java.io.InputStream
+import kotlin.system.exitProcess
 
 
 /**
@@ -57,6 +58,7 @@ class MainActivity : Activity() {
         override fun onDestroy() {
             super.onDestroy()
             scope.cancel()
+            exitProcess(0) // so that the module activation state will be refreshed
         }
 
         override fun onPreferenceChange(preference: Preference, newValue: Any): Boolean {
